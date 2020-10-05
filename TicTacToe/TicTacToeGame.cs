@@ -72,6 +72,7 @@ namespace TicTacToe
                 if(!board[markTo].Equals(' '))
                 {
                     Console.WriteLine("Position is already marked");
+                    markCharacter();
                 }
                 else
                 {
