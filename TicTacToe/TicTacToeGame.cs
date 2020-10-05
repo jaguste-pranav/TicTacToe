@@ -7,6 +7,7 @@ namespace TicTacToe
     class TicTacToeGame
     {
         private char[] board = new char[10];
+        char userSelection = ' ', compSelection = ' ';
 
         public void CreateGame()
         {
@@ -20,23 +21,40 @@ namespace TicTacToe
 
         public void selectCharacter()
         {
-            Console.WriteLine("Select X or 0");
-            char userSelection = Convert.ToChar(Console.ReadLine());
-            char compSelection = ' ';
+            while (true)
+            {
+                Console.WriteLine("Select X or 0");
+                userSelection = Convert.ToChar(Console.ReadLine());
 
-            if (userSelection == 'X')
-            {
-                compSelection = '0';
+                if (userSelection == 'X')
+                {
+                    compSelection = '0';
+                    break;
+                }
+                else if (userSelection == '0')
+                {
+                    compSelection = 'X';
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Please select correctly");
+                    userSelection = '-';
+                    compSelection = '-';
+                }
             }
-            else if (userSelection == '0')
+        }
+
+        public void showBoard()
+        {
+            Console.WriteLine("The Board looks like ");
+            for (int position = 1; position<board.Length; position++)
             {
-                compSelection = 'X';
-            }
-            else
-            {
-                Console.WriteLine("Please select correctly");
-                userSelection = '-';
-                compSelection = '-';
+                if(position == 1 || position == 4 || position == 7)
+                {
+                    Console.WriteLine("\n");
+                }
+                Console.Write(board[position]+ " ");
             }
         }
     }
