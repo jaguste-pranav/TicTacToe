@@ -10,7 +10,8 @@ namespace TicTacToe
             Console.WriteLine("Hello World!");
             Console.WriteLine("Welcome to TiTacToe Game!");
             TicTacToeGame game = new TicTacToeGame();
-            game.UC1();
+            game.CreateGame();
+            game.selectCharacter();
         }
     }
 }
