@@ -15,7 +15,7 @@ namespace TicTacToe
 
             for (int position = 1; position<board.Length; position++)
             {
-                board[position] = ' ';
+                board[position] = '0';
             }
         }
 
@@ -54,7 +54,7 @@ namespace TicTacToe
                 {
                     Console.WriteLine("\n");
                 }
-                Console.Write(board[position]+ " ");
+                Console.Write(board[position]+ "|");
             }
         }
     }
