@@ -14,6 +14,7 @@ namespace TicTacToe
             game.selectCharacter();
             game.showBoard();
             game.markCharacter();
+            game.Toss();
         }
     }
 }

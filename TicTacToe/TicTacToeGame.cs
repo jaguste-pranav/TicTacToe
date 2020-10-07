@@ -8,6 +8,8 @@ namespace TicTacToe
     {
         private char[] board = new char[10];
         char userSelection = ' ', compSelection = ' ';
+        int HEADS = 1;
+        int TAILS = 2;
 
         public void CreateGame()
         {
@@ -78,8 +80,22 @@ namespace TicTacToe
                     board[markTo] = userSelection;
                 }
             }
-
             showBoard();
+        }
+
+        public void Toss()
+        {
+            Random rand = new Random();
+            int outcome = rand.Next(0, 2);
+
+            if(outcome == HEADS)
+            {
+                Console.WriteLine("Computer Plays First");
+            }
+            else
+            {
+                Console.WriteLine("User Plays First");
+            }
         }
     }
 }
