@@ -12,18 +12,15 @@ namespace TicTacToe
             TicTacToeGame game = new TicTacToeGame();
             game.CreateGame();
             game.selectCharacter();
+            game.Toss();
 
-            if(!game.checkDraw() && !game.winner())
+            while (!game.checkDraw() && !game.winner())
             {
-                Console.WriteLine("Change Turn");
-            }
-            else
-            {
-                Console.WriteLine("Game is decided");
+                game.MakeMove(game.playerToPlay());
+                game.changePlayer();
             }
 
             game.showBoard();
-            //game.markCharacter();
         }
     }
 }
