@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 
 namespace TicTacToe
@@ -31,11 +32,13 @@ namespace TicTacToe
                 if (userSelection == 'X')
                 {
                     compSelection = '0';
+                    Console.WriteLine("\nYou are " + userSelection + "\nComputer is " + compSelection);
                     break;
                 }
                 else if (userSelection == '0')
                 {
                     compSelection = 'X';
+                    Console.WriteLine("\nYou are " + userSelection + "\nComputer is " + compSelection);
                     break;
                 }
                 else
@@ -44,6 +47,7 @@ namespace TicTacToe
                     userSelection = '-';
                     compSelection = '-';
                 }
+                
             }
         }
 
@@ -57,6 +61,18 @@ namespace TicTacToe
                     Console.WriteLine("\n");
                 }
                 Console.Write(board[position] + "|");
+            }
+        }
+
+        public bool checkPositionAval(int position)
+        {
+            if (board[position].Equals("X") || board[position].Equals("0"))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -88,13 +104,73 @@ namespace TicTacToe
             Random rand = new Random();
             int outcome = rand.Next(0, 2);
 
-            if(outcome == HEADS)
+            if (outcome == HEADS)
             {
                 Console.WriteLine("Computer Plays First");
             }
             else
             {
                 Console.WriteLine("User Plays First");
+            }
+        }
+
+        public bool winner()
+        {
+            char syb;
+            bool winnerDecided = false;
+            for (int i = 0; i < 2; i++)
+            {
+                if (i == 0)
+                {
+                    syb = 'X';
+                }
+                else
+                {
+                    syb = '0';
+                }
+
+                if ((board[1] == syb && board[2] == syb && board[3] == syb) ||
+                    (board[4] == syb && board[5] == syb && board[6] == syb) ||
+                    (board[7] == syb && board[8] == syb && board[9] == syb) ||
+                    (board[1] == syb && board[4] == syb && board[7] == syb) ||
+                    (board[2] == syb && board[5] == syb && board[7] == syb) ||
+                    (board[3] == syb && board[6] == syb && board[9] == syb) ||
+                    (board[1] == syb && board[5] == syb && board[9] == syb) ||
+                    (board[3] == syb && board[5] == syb && board[7] == syb))
+                {
+                    winnerDecided = true;
+                    break;
+                }
+                
+            }
+            
+            return winnerDecided;
+        }
+
+        public bool checkDraw()
+        {
+            bool isDraw = false;
+            if (winner())
+            {
+                return false;
+            }
+            else
+            {
+                for (int position = 1; position < board.Length; position++)
+                {
+                    if (checkPositionAval(position))
+                    {
+                        isDraw = false;
+                        break;
+                    }
+                    else
+                    {
+                        isDraw = true;
+                    }
+                }
+
+                //Console.WriteLine("Result: " + isDraw);
+                return isDraw;
             }
         }
     }
