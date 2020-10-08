@@ -61,25 +61,53 @@ namespace TicTacToe
         public int getBestMove()
         {
             int bestposition = 100;
+            bool block = false;
             for (int position = 1; position < board.Length; position++)
             {
                 Console.WriteLine("Loop " + position + " free: " + checkPositionAval(position));
                 if (checkPositionAval(position))
                 {
-                    markCharacter(compSelection, position);
-
-                    if (winner())
+                    for (int userposition = 1; userposition < board.Length; userposition++)
                     {
-                        markCharacter(' ', position);
+                        if (checkPositionAval(userposition))
+                        {
+                            board[userposition] = userSelection;
+                            if (winner())
+                            {
+                                board[userposition] = ' ';
+                                bestposition = userposition;
+                                block = true;
+                                break;
+                            }
+                            else
+                            {
+                                board[userposition] = ' ';
+                            }
+                        }
+                    }
+                    Console.WriteLine("Nothing to block: " + !block);
+
+                    if (!block)
+                    {
+                        markCharacter(compSelection, position);
                     }
                     else
                     {
-                        bestposition = position;
-                        break;
+                        markCharacter(compSelection, bestposition);
                     }
+                    
+                    break;
                 }
+                //else
+                //{
+                    
+                //    break;
+                //}
+                //    bestposition = position;
+                //    break;
+                //}
             }
-
+            
             return bestposition;
         }
         public void selectCharacter()
@@ -87,7 +115,7 @@ namespace TicTacToe
             while (true)
             {
                 Console.WriteLine("Select X or 0");
-                userSelection = Convert.ToChar(Console.ReadLine());
+                userSelection = Convert.ToChar(Console.ReadLine()); 
 
                 if (userSelection == 'X')
                 {
@@ -210,7 +238,7 @@ namespace TicTacToe
                     (board[4] == syb && board[5] == syb && board[6] == syb) ||
                     (board[7] == syb && board[8] == syb && board[9] == syb) ||
                     (board[1] == syb && board[4] == syb && board[7] == syb) ||
-                    (board[2] == syb && board[5] == syb && board[7] == syb) ||
+                    (board[2] == syb && board[5] == syb && board[8] == syb) ||
                     (board[3] == syb && board[6] == syb && board[9] == syb) ||
                     (board[1] == syb && board[5] == syb && board[9] == syb) ||
                     (board[3] == syb && board[5] == syb && board[7] == syb))
