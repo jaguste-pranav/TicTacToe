@@ -104,7 +104,6 @@ namespace TicTacToe
 
                         if (cornersFilled)
                         {
-                            
                             if (checkPositionAval(center))
                             {
                                 markCharacter(compSelection, center);
