@@ -35,20 +35,20 @@ namespace TicTacToe
 
         public void MakeMove(int player)
         {
-            if(player == USER)
+            if (player == USER)
             {
                 markCharacter(userSelection, getUserMove());
             }
             else
             {
                 getBestMove();
-            }    
-           
+            }
+
         }
 
         public void changePlayer()
         {
-            if(whoPlays == USER)
+            if (whoPlays == USER)
             {
                 Console.WriteLine("Computer to Play");
                 whoPlays = COMPUTER;
@@ -61,14 +61,14 @@ namespace TicTacToe
         public int getBestMove()
         {
             int bestposition = 100;
-            for(int position = 1; position<board.Length; position++)
+            for (int position = 1; position < board.Length; position++)
             {
-                Console.WriteLine("Loop " + position+ " free: "+ checkPositionAval(position));
-                if(checkPositionAval(position))
+                Console.WriteLine("Loop " + position + " free: " + checkPositionAval(position));
+                if (checkPositionAval(position))
                 {
                     markCharacter(compSelection, position);
-                    
-                    if(winner())
+
+                    if (winner())
                     {
                         markCharacter(' ', position);
                     }
@@ -107,7 +107,7 @@ namespace TicTacToe
                     userSelection = '-';
                     compSelection = '-';
                 }
-                
+
             }
         }
 
@@ -151,20 +151,25 @@ namespace TicTacToe
 
         public void markCharacter(char symbol, int position)
         {
-            if (0 > position || position > 10)
+            while (true)
             {
-                Console.WriteLine("Please select correctly");
-            }
-            else
-            {
-                if (!board[position].Equals(' '))
+                if (0 > position || position > 10)
                 {
-                    Console.WriteLine("Position is already marked");
+                    Console.WriteLine("Please select correctly, select new position");
                 }
                 else
                 {
-                    board[position] = symbol;
+                    if (board[position].Equals(' '))
+                    {
+                        board[position] = symbol;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Position is filled, select new position");
+                    }
                 }
+                position = Convert.ToInt32(Console.ReadLine());
             }
             showBoard();
         }
@@ -211,7 +216,7 @@ namespace TicTacToe
                     (board[3] == syb && board[5] == syb && board[7] == syb))
                 {
                     winnerDecided = true;
-                    if(syb == userSelection)
+                    if (syb == userSelection)
                     {
                         winningPlayer = "User";
                     }
@@ -222,7 +227,7 @@ namespace TicTacToe
                     Console.WriteLine("The winner is " + winningPlayer);
                     break;
                 }
-                
+
             }
             return winnerDecided;
         }
@@ -249,7 +254,7 @@ namespace TicTacToe
                     }
                 }
 
-                if(isDraw)
+                if (isDraw)
                 {
                     Console.WriteLine("Match Drawn");
                 }
