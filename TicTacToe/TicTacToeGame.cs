@@ -90,20 +90,26 @@ namespace TicTacToe
                     if (!block)
                     {
                         int[] cornerPosition = new int[4] { 1, 3, 7, 9 };
-                        bool cornerFilled = true;
+                        int center = 5;
+                        bool cornersFilled = true;
                         for (int corner = 0; corner < cornerPosition.Length; corner++)
                         {
                             if (checkPositionAval(cornerPosition[corner]))
                             {
                                 markCharacter(compSelection, cornerPosition[corner]);
+                                cornersFilled = false;
                                 break;
                             }
-                            cornerFilled = false;
                         }
 
-
-
-                        /*markCharacter(compSelection, position);*/
+                        if (cornersFilled)
+                        {
+                            
+                            if (checkPositionAval(center))
+                            {
+                                markCharacter(compSelection, center);
+                            }
+                        }
                     }
                     else
                     {
