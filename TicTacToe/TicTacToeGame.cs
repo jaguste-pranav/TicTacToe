@@ -64,7 +64,6 @@ namespace TicTacToe
             bool block = false;
             for (int position = 1; position < board.Length; position++)
             {
-                Console.WriteLine("Loop " + position + " free: " + checkPositionAval(position));
                 if (checkPositionAval(position))
                 {
                     for (int userposition = 1; userposition < board.Length; userposition++)
@@ -85,7 +84,7 @@ namespace TicTacToe
                             }
                         }
                     }
-                    Console.WriteLine("Nothing to block: " + !block);
+                    
 
                     if (!block)
                     {
@@ -168,7 +167,9 @@ namespace TicTacToe
                     Console.WriteLine("\n");
                 }
                 Console.Write(board[position] + "|");
+               
             }
+            Console.WriteLine("\n");
         }
 
         public bool checkPositionAval(int position)

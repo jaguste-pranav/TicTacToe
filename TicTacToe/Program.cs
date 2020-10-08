@@ -14,13 +14,27 @@ namespace TicTacToe
             game.selectCharacter();
             game.Toss();
 
-            while (!game.checkDraw() && !game.winner())
+            while (true)
             {
-                game.MakeMove(game.playerToPlay());
-                game.changePlayer();
-            }
+                while (!game.checkDraw() && !game.winner())
+                {
+                    game.MakeMove(game.playerToPlay());
+                    game.changePlayer();
+                }
 
-            game.showBoard();
+                game.showBoard();
+
+                Console.WriteLine("\n\nGame Over.\nPress 1 to play another game or any other key to exit");
+                int anotherGame = Convert.ToInt32(Console.ReadLine());
+
+                if(anotherGame != 1)
+                {
+                    break;
+                }
+                game.CreateGame();
+                game.selectCharacter();
+                game.Toss();
+            }
         }
     }
 }
